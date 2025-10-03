@@ -1,5 +1,6 @@
 .grid_3{display: grid;grid-template-columns: repeat(3, 1fr);gap: 20px;}
 .grid_4{display: grid;grid-template-columns: repeat(4, 1fr);}
+.grid_2{display: grid;grid-template-columns: repeat(2, 1fr);gap:15px;}
 .bg_dark{background-color: #111827;}
 .bg_gray{background-color: #f9fafb;}
 .bg_pink{background-color: #fee2e2;}
@@ -17,12 +18,14 @@
 .card_wrap{margin: 0;padding: 0;}
 
 .card_wrap.grid_4 .card{height: 215px;}
-.card{display:flex;align-items: center;background-color:#f9fafb;border: none;gap: 10px;border-radius:12px;padding:32px;height: 270px;}
+.card{display:flex;align-items: center;border: none;gap: 10px;border-radius:12px;padding:32px;height: 270px;}
 .card:hover{box-shadow: inset;}
 .card.point{background-color:#fef2f2;}
 .card_tit{font-size:20px;font-weight: 500;}
 .card_desc{font-size:16px;text-align: center;}
 .card_icon{border-radius: 50%;padding: 15px;aspect-ratio: 1 / 1;display: flex;align-items: center;justify-content: center;}
+.card_img{width: 100%;}
+.aspect_3_4{aspect-ratio: 3/4;}
 
 .main{background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),url(../img/energy-saving.jpg) no-repeat;background-size: cover;height: 1000px;}
 .main_wrap{margin-top: 390px;}
@@ -32,3 +35,136 @@
 
 .navbar{height:56px;}
 .navbar_nav{color:#111827;display: flex;gap: 50px;}
+
+.banner{width: 100%;height:400px;background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url(../img/energy-saving.jpg) no-repeat;background-size: cover;display: flex;align-items: center;}
+.banner .container{display: flex;justify-content: center;}
+.banner_tit{text-align: center;color:#ffffff;}
+.banner_desc{text-align: center;color:#ffffff;}
+
+.article_wrap{display: flex;flex-direction: column;gap: 15px;justify-content: center;}
+.article_img{width: 100%; border-radius: 10px;}
+.about .article_tit{text-align: left;font-size: 32px;font-weight: 600;}
+.about .article_desc{text-align: left;}
+
+.about_worker .card{height: auto;padding: 0 32px;}
+.about_worker .card_wrap{justify-items: center;}
+.about_worker .card_img{width: 70%;min-height: 300px;border-radius: 10px;padding: 0;overflow: hidden;}
+
+.about_company .card{align-items: flex-start;justify-content: space-around;}
+.about_company .card_tit{font-size:24px;text-align:left;}
+
+    
+.about_company .card ul{padding-left: 25px;}
+.about_company .card li{list-style: circle;}
+.about_company .card li + li{margin-top:8px;list-style: circle;}
+
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .custom-table thead {
+      background-color: #f7f7f7;
+    }
+    .custom-table th, .custom-table td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #eaeaea;
+      font-size: 15px;
+    }
+    .custom-table th {
+      font-weight: 600;
+      color: #333;
+    }
+    .custom-table tbody tr:hover {
+      background-color: #fafafa;
+    }
+
+        .quote-form {margin: 0 auto;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 600px;
+      max-width: 95%;
+    }
+
+    .quote-form h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .quote-form p {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group select,
+    textarea {
+      flex: 1;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    textarea:focus {
+      border-color: #d63031;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      resize: none;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #d63031;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #b71c1c;
+    }
+
+    @media (max-width: 600px) {
+      .form-group {
+        flex-direction: column;
+      }
+    }
