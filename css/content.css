@@ -1,5 +1,5 @@
 .grid_3{display: grid;grid-template-columns: repeat(3, 1fr);gap: 20px;}
-.grid_4{display: grid;grid-template-columns: repeat(4, 1fr);}
+.grid_4{display: grid;grid-template-columns: repeat(4, 1fr);gap:15px;}
 .grid_2{display: grid;grid-template-columns: repeat(2, 1fr);gap:15px;}
 .bg_dark{background-color: #111827;}
 .bg_gray{background-color: #f9fafb;}
@@ -14,15 +14,17 @@
 .sub_tit{font-size:32px;font-weight: 600;margin-bottom:10px;text-align:center;}
 .sub_desc{font-size:20px;text-align:center;margin-bottom:48px;}
 
+
 .btn_wrap .btn:hover{color:#dc2626;background-color: #ffffff;}
 .card_wrap{margin: 0;padding: 0;}
 
 .card_wrap.grid_4 .card{height: 215px;}
-.card{display:flex;align-items: center;border: none;gap: 10px;border-radius:12px;padding:32px;height: 270px;}
+.card{display:flex;align-items: center;border: none;gap: 10px;border-radius:12px;padding:32px 16px;height: 270px;margin-top:10px;}
 .card:hover{box-shadow: inset;}
 .card.point{background-color:#fef2f2;}
 .card_tit{font-size:20px;font-weight: 500;}
 .card_desc{font-size:16px;text-align: center;}
+.card_desc_sm{font-size:12px;text-align:center;}
 .card_icon{border-radius: 50%;padding: 15px;aspect-ratio: 1 / 1;display: flex;align-items: center;justify-content: center;}
 .card_img{width: 100%;}
 .aspect_3_4{aspect-ratio: 3/4;}
@@ -53,12 +55,15 @@
 .about_company .card{align-items: flex-start;justify-content: space-around;}
 .about_company .card_tit{font-size:24px;text-align:left;}
 
+.about_company .card.flex_start{justify-content:flex-start;}
     
 .about_company .card ul{padding-left: 25px;}
 .about_company .card li{list-style: circle;}
 .about_company .card li + li{margin-top:8px;list-style: circle;}
 
-
+.form-group select{height: 47px;}
+.form-group.grid_2{display: grid;grid-template-columns: 33% auto;}
+.label_desc{font-size: 14px; color:#555; margin-top:-10px; margin-bottom:20px;}
     .custom-table {
       width: 100%;
       border-collapse: collapse;
@@ -168,3 +173,119 @@
         flex-direction: column;
       }
     }
+
+    
+    .swiper {
+      width: 100%;
+      height: 260px;
+      margin:60px 0 120px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 18px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info_slide .swiper-pagination-bullet-active{background: #d63031;}
+
+
+    /* 모바일 공통 설정 */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .navbar{height:75px;}
+  .m_block{display: block !important;}
+  /* 제목 크기 조정 */
+  h2.main_tit,
+  h2.sub_tit {
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .main_desc,
+  .sub_desc {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* 메인 버튼 정렬 */
+  .btn_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn_wrap a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  /* 네비게이션 로고 정렬 */
+  nav .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* 카드 그리드 반응형 */
+  .grid_4, .grid_3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개씩 정렬 */
+    gap: 12px;
+  }
+
+  /* 카드 내부 텍스트 크기 */
+  .card_tit {
+    font-size: 16px;
+  }
+  .card_desc {
+    font-size: 13px;
+  }
+
+  /* 3년 보증 카드의 작은 글자 */
+  .card_desc_sm {
+    font-size: 11px;
+  }
+
+  /* Swiper 이미지 높이 조정 */
+  .swiper-slide img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* Footer 반응형 */
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .footer_company,
+  .footer_services,
+  .footer_links {
+    width: 100%;
+  }
+  .footer h3 {
+    margin-bottom: 8px;
+  }
+
+  /* 전화번호 버튼 모바일 전용 */
+  .bg_red .btn_wrap a {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+}

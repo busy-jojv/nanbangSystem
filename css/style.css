@@ -5,6 +5,7 @@ body {
   margin: 0;
   font-family: "Noto Sans KR", sans-serif;
   line-height: 1.6;
+  letter-spacing: -0.5px;
   color: #333;
 }
 
@@ -156,3 +157,4 @@ footer {
 .footer_bottom{margin:0; padding-bottom: 10px;}
 .footer_bottom p{padding-top:30px;border-top:1px solid #1f2937;}
 .footer_bottom .container{padding:20px;}
+

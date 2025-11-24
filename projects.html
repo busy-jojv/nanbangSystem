@@ -8,13 +8,15 @@
   <link rel="stylesheet" href="css/content.css">
 
   <script src="https://kit.fontawesome.com/1d83d7b8ac.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript" defer src="./js/email.js"></script>
 </head>
 <body>
   <!-- 네비게이션 -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="/" href="index.html"><i style="color:#dc2626;" class="fa-solid fa-house-fire fa-2x"></i>&nbsp;중구난방</a>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse show">
         <ul class="navbar_nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="about.html">회사소개</a></li>
           <li class="nav-item"><a class="nav-link" href="construction.html">시공이력</a></li>
@@ -42,54 +44,98 @@
     <h2 class="sub_tit">무료 견적 신청</h2>
     <p class="sub_desc">아래 정보를 입력해주시면 24시간 내에 전문가가 연락드립니다</p>
     <form class="quote-form" id="quoteForm">
+      <!-- 이름 / 연락처 -->
+      <div class="form-group">
+        <input type="text" name="name" placeholder="성함을 입력해주세요*" required>
+        <input type="tel" name="phone" placeholder="010-1234-5678*" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="example@email.com">
+      </div>
 
-    <div class="form-group">
-      <input type="text" name="name" placeholder="성함을 입력해주세요" required>
-      <input type="tel" name="phone" placeholder="010-1234-5678" required>
-    </div>
+      <!-- 지역 + 상세주소 -->
+      <div class="form-group grid_2">
+        <!-- 지역 선택 -->
+        <select name="region" required>
+          <option value="">지역을 선택해주세요*</option>
+          <option value="서울">서울</option>
+          <option value="경기도">경기도</option>
+          <option value="인천">인천</option>
+          <option value="대전">대전</option>
+          <option value="세종">세종</option>
+          <option value="기타지역">기타지역</option>
+        </select>
+        <!-- 상세주소 직접입력 -->
+        <input type="text" name="address_detail" placeholder="OO시 OO동 OO아파트 등 상세주소 입력">
+      </div>
 
-    <div class="form-group">
-      <input type="email" name="email" placeholder="example@email.com">
-      <input type="text" name="address" placeholder="서비스 받을 주소를 입력해주세요">
-    </div>
+      <!-- 난방 종류 -->
+      <div class="form-group">
+        <select name="heating_type" required>
+          <option value="">난방 종류를 선택해주세요*</option>
+          <option value="지역난방">지역난방</option>
+          <option value="개별난방">개별난방</option>
+          <option value="중앙난방">중앙난방</option>
+          <option value="잘모름">잘모름</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <select name="service" required>
-        <option value="">서비스 종류를 선택해주세요</option>
-        <option value="냉난방">냉난방</option>
-        <option value="설비">설비</option>
-        <option value="리모델링">리모델링</option>
-      </select>
-      <select name="product" required>
-        <option value="">제품 종류를 선택해주세요</option>
-        <option value="보일러">보일러</option>
-        <option value="히트펌프">히트펌프</option>
-        <option value="온도조절기">온도조절기</option>
-      </select>
-    </div>
+      <!-- 서비스 종류 / 제품 종류 -->
+      <div class="form-group">
+        <!-- 서비스 종류 -->
+        <select name="service" id="serviceSelect">
+          <option value="">서비스 종류를 선택해주세요</option>
+          <option value="난방">난방</option>
+          <option value="분배기밸브">분배기 밸브</option>
+          <option value="신축시공">신축 시공</option>
+          <option value="단지공동구매">단지 공동구매</option>
+          <option value="잘모름">잘모름</option>
+        </select>
+        <!-- 제품 종류 — 선택 자동 변경됨 -->
+        <select name="product" id="productSelect">
+          <option value="">제품 종류를 선택해주세요</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <select name="date" required>
-        <option value="">희망 날짜 선택</option>
-        <option value="평일">평일</option>
-        <option value="주말">주말</option>
-      </select>
-      <select name="time" required>
-        <option value="">희망 시간 선택</option>
-        <option value="오전">오전</option>
-        <option value="오후">오후</option>
-      </select>
-    </div>
+      <!-- 희망 날짜 / 시간 + 안내문 -->
+      <div class="form-group">
+        <select name="date" required>
+          <option value="">희망 날짜 선택*</option>
+          <option value="평일">평일</option>
+          <option value="주말">주말</option>
+        </select>
+        <select name="time" required>
+          <option value="">희망 시간 선택*</option>
+          <option value="오전">오전</option>
+          <option value="오후">오후</option>
+        </select>
+      </div>
 
-    <div class="form-group" style="flex-direction: column;">
-      <textarea name="details" maxlength="500" placeholder="현재 상황이나 문제점, 특별한 요청사항 등을 자세히 입력해주세요 (최대 500자)"></textarea>
-      <div class="char-count"><span id="charCount">0</span>/500자</div>
-    </div>
+      <p class="label_desc">
+        ※ 희망하신 날짜 및 시간은 최대한 반영하나, 상황에 따라 변경될 수 있습니다.
+      </p>
 
-    <button type="submit" class="submit-btn">견적 문의하기</button>
-  </form>
+      <!-- 문제 사진 업로드 (3개) -->
+      <div class="form-group" style="flex-direction: column;">
+        <label>문제가 있는 곳의 사진을 업로드해주세요 <span class="label_desc">(온도조절기 / 분배기 / 보일러 시공표지판 등)</span></label>
+        <input type="file" name="photo1" accept="image/*">
+        <input type="file" name="photo2" accept="image/*">
+        <input type="file" name="photo3" accept="image/*">
+      </div>
+
+      <!-- 상세 설명 -->
+      <div class="form-group" style="flex-direction: column;">
+        <textarea name="details" maxlength="500"
+          placeholder="현재 상황이나 문제점, 특별한 요청사항 등을 자세히 입력해주세요 (최대 500자)">
+        </textarea>
+        <div class="char-count"><span id="charCount">0</span>/500자</div>
+      </div>
+
+      <input type="submit" class="submit-btn" value="견적 문의하기"/>
+    </form>
   </section>
 </div>
+
   <!-- Footer -->
 <footer class="bg_dark">
     <div class="container footer ">
@@ -131,3 +177,42 @@
 
 </body>
 </html>
+
+
+<script>
+/* -----------------------------
+   서비스에 따라 제품 목록 변경
+------------------------------*/
+const serviceSelect = document.getElementById("serviceSelect");
+const productSelect = document.getElementById("productSelect");
+
+const options = {
+  "난방": ["온도조절기", "구동기", "제어기", "분배기밸브"],
+  "분배기밸브": ["TRV밸브", "정유량밸브", "복합정유량밸브", "스트레너", "인서트밸브", "기타가지관", "납품문의"],
+  "신축시공": ["각방시스템 설치", "분배기 납품문의", "통합문의 (분배기 납품 및 설치)"],
+  "단지공동구매": ["신청 완료"],
+  "잘모름" : ["-"]
+};
+
+serviceSelect.addEventListener("change", () => {
+  const selected = serviceSelect.value;
+  productSelect.innerHTML = "<option value=''>제품 종류를 선택해주세요</option>";
+
+  if (options[selected]) {
+    options[selected].forEach(item => {
+      let opt = document.createElement("option");
+      opt.value = item;
+      opt.textContent = item;
+      productSelect.appendChild(opt);
+    });
+  }
+});
+
+/* 글자 수 카운트 */
+const textarea = document.querySelector("textarea[name='details']");
+const charCount = document.getElementById("charCount");
+
+textarea.addEventListener("input", () => {
+  charCount.textContent = textarea.value.length;
+});
+</script>
